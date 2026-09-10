@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>md → html — a markdown to HTML converter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wordmark">
+    <span class="tag">markdown</span>
+    <span class="glyph">→</span>
+    <span class="tag tag-html">html</span>
+  </div>
+  <p class="byline">Type on the left. Watch it become real markup on the right.</p>
+</header>
+
+<main class="workspace">
+
+  <section class="pane pane-editor" aria-label="Markdown input">
+    <div class="pane-head">
+      <span class="dot"></span>
+      <span class="pane-title">markdown-input.md</span>
+    </div>
+    <textarea id="markdown-input" spellcheck="false"># Welcome to the converter
+
+## This is a smaller heading
+
+### And an even smaller one
+
+This paragraph has **bold text**, __also bold__, and _italic text_ mixed together, along with a single *emphasised* word.
+
+> Markdown lets you write structured documents without touching a single HTML tag.
+
+Here is a [link to freeCodeCamp](https://www.freecodecamp.org) so you can check the source curriculum.
+
+![a quiet mountain lake at sunrise](https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=60)
+
+Keep typing below this line — the preview on the right updates as you go.</textarea>
+  </section>
+
+  <section class="pane pane-preview" aria-label="Rendered preview">
+    <div class="pane-head pane-head-preview">
+      <span class="dot"></span>
+      <span class="pane-title">preview.html</span>
+    </div>
+    <div id="preview"></div>
+  </section>
+
+</main>
+
+<section class="raw-panel">
+  <button id="toggle-raw" type="button" class="raw-toggle" aria-expanded="false" aria-controls="html-output">
+    view generated HTML
+  </button>
+  <pre id="html-output" class="raw-output" hidden></pre>
+</section>
+
+<footer class="site-footer">
+  <p>Markdown → HTML Converter · built with vanilla JavaScript and regular expressions, no libraries.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
