@@ -1,67 +1,212 @@
-{
+:root {
+  --bg: #e7ebe4;
+  --panel: #fbfcf9;
+  --ink: #1f2a24;
+  --ink-soft: #5c6b60;
+  --accent: #35618f;
+  --rule: #cfd6c9;
+  --rule-strong: #a9b3a1;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+}
 
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #0f172a;
-  color: #f8fafc;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
+  font-family: var(--serif);
+  background-color: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  padding: 3rem 1.5rem 4rem;
 }
 
-.container {
-  width: 100%;
-  max-width: 900px;
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* ---------- Masthead ---------- */
+
+.masthead {
+  border-bottom: 1px solid var(--rule-strong);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.masthead h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.masthead .arrow {
+  color: var(--accent);
+  font-weight: 400;
+  padding: 0 0.15em;
+}
+
+.tagline {
+  margin-top: 0.5rem;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+
+/* ---------- Layout ---------- */
+
+.proof {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.pane-stack {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2.5rem;
 }
 
-h1 {
-  text-align: center;
-  color: #818cf8;
+@media (max-width: 860px) {
+  .proof {
+    grid-template-columns: 1fr;
+  }
 }
 
-label, h2 {
-  display: block;
+/* ---------- Panes ---------- */
+
+.pane-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.stage {
+  font-family: var(--serif);
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #94a3b8;
+  font-size: 0.95rem;
+  color: var(--accent);
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  width: 1.4rem;
+  height: 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-textarea {
+.pane-head label,
+.pane-head h2 {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+/* ---------- Input pane: ruled manuscript page ---------- */
+
+textarea#markdown-input {
   width: 100%;
-  height: 120px;
-  padding: 0.75rem;
-  border-radius: 8px;
-  border: 1px solid #334155;
-  background-color: #1e293b;
-  color: #f8fafc;
-  font-family: monospace;
-  font-size: 1rem;
+  height: 420px;
+  padding: 1rem 1.1rem;
+  border-radius: 3px;
+  border: 1px solid var(--rule-strong);
+  background-color: var(--panel);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 1.68rem,
+    var(--rule) 1.68rem,
+    var(--rule) calc(1.68rem + 1px)
+  );
+  background-position: 0 2.05rem;
+  line-height: 1.7rem;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.95rem;
   resize: vertical;
 }
 
+textarea#markdown-input::placeholder {
+  color: var(--ink-soft);
+  opacity: 0.7;
+}
+
+textarea#markdown-input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Output pane: typeset proof ---------- */
+
+pre#html-output {
+  min-height: 150px;
+  max-height: 260px;
+  overflow: auto;
+  padding: 1rem 1.1rem;
+  border-radius: 3px;
+  border: 1px solid var(--rule-strong);
+  background-color: var(--panel);
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ---------- Preview pane ---------- */
+
 #preview {
-  min-height: 100px;
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid #334155;
-  background-color: #1e293b;
-  color: #f8fafc;
+  min-height: 180px;
+  padding: 1.25rem 1.4rem;
+  border-radius: 3px;
+  border: 1px solid var(--rule-strong);
+  background-color: var(--panel);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+#preview:empty::before {
+  content: "Rendered markdown will appear here.";
+  color: var(--ink-soft);
+}
+
+#preview h1,
+#preview h2,
+#preview h3 {
+  font-weight: 600;
+  margin: 0.9em 0 0.4em;
+  line-height: 1.3;
+}
+
+#preview h1:first-child,
+#preview h2:first-child,
+#preview h3:first-child {
+  margin-top: 0;
 }
 
 #preview blockquote {
-  border-left: 4px solid #6366f1;
+  border-left: 3px solid var(--accent);
   padding-left: 1rem;
-  color: #cbd5e1;
+  margin: 0.75em 0;
+  color: var(--ink-soft);
+  font-style: italic;
 }
 
 #preview img {
   max-width: 100%;
+  border-radius: 2px;
+}
+
+#preview a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
