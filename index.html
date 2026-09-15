@@ -4,51 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Markdown to HTML Converter</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="page">
+  <main class="container">
+    <h1>Markdown to HTML Converter</h1>
+    
+    <div class="editor-pane">
+      <label for="markdown-input">Markdown Input</label>
+      <textarea id="markdown-input" placeholder="Type markdown here..."></textarea>
+    </div>
 
-    <header class="masthead">
-      <h1>Markdown <span class="arrow" aria-hidden="true">&rarr;</span> HTML</h1>
-      <p class="tagline">Type on the left. Watch it get typeset on the right.</p>
-    </header>
+    <div class="output-pane">
+      <label for="html-output">HTML Output</label>
 
-    <main class="proof">
+      <pre id="html-output"></pre>
+    </div>
 
-      <section class="pane pane-input">
-        <div class="pane-head">
-          <span class="stage">1</span>
-          <label for="markdown-input">Markdown source</label>
-        </div>
-        <textarea id="markdown-input" placeholder="Type markdown here..." spellcheck="false"></textarea>
-      </section>
-
-      <div class="pane-stack">
-
-        <section class="pane pane-output">
-          <div class="pane-head">
-            <span class="stage">2</span>
-            <label for="html-output">HTML output</label>
-          </div>
-          <pre id="html-output"></pre>
-        </section>
-
-        <section class="pane pane-preview">
-          <div class="pane-head">
-            <span class="stage">3</span>
-            <h2>Preview</h2>
-          </div>
-          <div id="preview"></div>
-        </section>
-
-      </div>
-
-    </main>
-  </div>
+    <div class="preview-pane">
+      <h2>Preview</h2>
+      <div id="preview"></div>
+    </div>
+  </main>
 
   <script src="script.js"></script>
 </body>
